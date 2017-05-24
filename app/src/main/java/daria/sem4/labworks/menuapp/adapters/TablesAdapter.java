@@ -42,7 +42,8 @@ public class TablesAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return tables.get(position).getId();
+        /*return tables.get(position).getId();*/
+        return position;
     }
 
     @Override
