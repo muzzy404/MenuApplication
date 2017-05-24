@@ -42,8 +42,7 @@ public class TablesAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        /*return tables.get(position).getId();*/
-        return position;
+        return tables.get(position).getId();
     }
 
     @Override
@@ -56,9 +55,12 @@ public class TablesAdapter extends BaseAdapter {
         Table table = (Table) getItem(position);
 
         // create new view
-        ((TextView) view.findViewById(R.id.tableNumberItem)).setText(table.getId());
-        ((TextView) view.findViewById(R.id.personsNumItem)).setText(table.getPersonsNum());
-        ((TextView) view.findViewById(R.id.ordersNumItem)).setText(table.ordersNum());
+        ((TextView) view.findViewById(R.id.tableNumberItem)).setText(
+                String.valueOf(table.getId()));
+        ((TextView) view.findViewById(R.id.personsNumItem)).setText(
+                String.valueOf(table.getPersonsNum()));
+        ((TextView) view.findViewById(R.id.ordersNumItem)).setText(
+                String.valueOf(table.ordersNum()));
 
         return view;
     }
