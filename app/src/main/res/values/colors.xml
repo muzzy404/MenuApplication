@@ -7,4 +7,7 @@
     <color name="colorBkGrdMenu">#ffba44</color>
     <color name="colorTitleMenu">#ffffff</color>
 
+    <color name="colorBkGrdList">#ffffff</color>
+    <color name="colorTitleList">#b62400</color>
+
 </resources>

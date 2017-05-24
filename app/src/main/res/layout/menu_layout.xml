@@ -2,7 +2,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -47,11 +46,11 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnAddWaiter"
+        android:id="@+id/btnStartWithoutAuthorization"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="add new waiter" />
+        android:text="start without authorization" />
 
     <Button
         android:id="@+id/btnAuthorization"
@@ -61,11 +60,18 @@
         android:text="authorization" />
 
     <Button
-        android:id="@+id/btnStartWithoutAuthorization"
+        android:id="@+id/btnEditMenu"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start without authorization" />
+        android:text="edit menu" />
+
+    <Button
+        android:id="@+id/btnAddWaiter"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="add new waiter" />
 
 
 </LinearLayout>

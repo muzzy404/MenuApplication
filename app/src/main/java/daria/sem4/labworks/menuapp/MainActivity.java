@@ -14,9 +14,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.menu_layout);
 
         // set OnClickListener to all buttons of menu
-        findViewById(R.id.btnAddWaiter).setOnClickListener(this);
-        findViewById(R.id.btnAuthorization).setOnClickListener(this);
         findViewById(R.id.btnStartWithoutAuthorization).setOnClickListener(this);
+        findViewById(R.id.btnAuthorization).setOnClickListener(this);
+        findViewById(R.id.btnEditMenu).setOnClickListener(this);
+        findViewById(R.id.btnAddWaiter).setOnClickListener(this);
 
     }
 
@@ -24,20 +25,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.btnAddWaiter:
-                // TODO: add new waiter
+            case R.id.btnStartWithoutAuthorization:
+                // TODO: next activity
                 Toast.makeText(getApplicationContext(),
-                        "Not available", Toast.LENGTH_SHORT).show();
+                        "Go to new activity!!!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnAuthorization:
                 // TODO: authorization od waiter
                 Toast.makeText(getApplicationContext(),
                         "Not available", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.btnStartWithoutAuthorization:
-                // TODO: next activity
+            case R.id.btnEditMenu:
+                // TODO: edit DB menu
                 Toast.makeText(getApplicationContext(),
-                        "Go to new activity!!!", Toast.LENGTH_SHORT).show();
+                        "Not available", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnAddWaiter:
+                // TODO: add new waiter
+                Toast.makeText(getApplicationContext(),
+                        "Not available", Toast.LENGTH_SHORT).show();
                 break;
         }
 
