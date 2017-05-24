@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // TODO: next activity
                 Toast.makeText(getApplicationContext(),
                         "Go to new activity!!!", Toast.LENGTH_SHORT).show();
+
+                // TODO: create default waiter
+
                 break;
             case R.id.btnAuthorization:
                 // TODO: authorization od waiter
