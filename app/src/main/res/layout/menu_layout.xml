@@ -17,7 +17,7 @@
         android:clickable="false"
         android:fontFamily="cursive"
         android:gravity="center_vertical|center_horizontal"
-        android:text="menu application"
+        android:text="@string/menu_title"
         android:textColor="@color/colorTitleMenu"
         android:textSize="@android:dimen/app_icon_size" />
 

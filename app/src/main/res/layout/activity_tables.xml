@@ -14,8 +14,18 @@
         android:clickable="false"
         android:fontFamily="cursive"
         android:gravity="center_horizontal|top"
-        android:text="list of my tables"
+        android:text="@string/tables_menu_title"
         android:textColor="@color/colorTitleList"
         android:textSize="@android:dimen/app_icon_size" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </LinearLayout>
