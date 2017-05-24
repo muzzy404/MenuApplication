@@ -9,5 +9,7 @@
 
     <color name="colorBkGrdList">#ffffff</color>
     <color name="colorTitleList">#b62400</color>
+    <color name="colorHeaders">#f13000</color>
+    <color name="colorTableItem">#7b3f30</color>
 
 </resources>

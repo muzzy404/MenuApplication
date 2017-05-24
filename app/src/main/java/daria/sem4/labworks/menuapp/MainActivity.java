@@ -1,5 +1,6 @@
 package daria.sem4.labworks.menuapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,11 +27,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.btnStartWithoutAuthorization:
-                // TODO: next activity
-                Toast.makeText(getApplicationContext(),
-                        "Go to new activity!!!", Toast.LENGTH_SHORT).show();
-
                 // TODO: create default waiter
+
+                Intent intent = new Intent(MainActivity.this, TablesActivity.class);
+                startActivity(intent);
 
                 break;
             case R.id.btnAuthorization:

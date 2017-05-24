@@ -4,4 +4,8 @@
     <string name="menu_title">menu application</string>
     <string name="tables_menu_title">list of my tables</string>
 
+    <string name="table_number">Table #</string>
+    <string name="table_persons">Persons</string>
+    <string name="tables_orders">Opened orders</string>
+
 </resources>

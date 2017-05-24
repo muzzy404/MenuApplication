@@ -20,23 +20,27 @@ public class Table {
         orders = new ArrayList<>();
     }
 
-    void addPerson() {
+    public int getId() {
+        return id;
+    }
+
+    public void addPerson() {
         ++personsNum;
     }
 
-    void removePerson() {
+    public void removePerson() {
         --personsNum;
     }
 
-    int getPersonsNum() {
+    public int getPersonsNum() {
         return personsNum;
     }
 
-    void addOrder(Order order) {
+    public void addOrder(Order order) {
         orders.add(order);
     }
 
-    int ordersNum() {
+    public int ordersNum() {
         return orders.size();
     }
 
