@@ -17,13 +17,13 @@ import daria.sem4.labworks.menuapp.R;
  * Created by Daria on 24.05.2017.
  */
 
-public class TablesRowAdapter extends BaseAdapter {
+public class TablesAdapter extends BaseAdapter {
 
     ArrayList<Table> tables;
     Context context;
     LayoutInflater layoutInflater;
 
-    TablesRowAdapter(Context context, ArrayList<Table> tables) {
+    public TablesAdapter(Context context, ArrayList<Table> tables) {
         this.context = context;
         layoutInflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

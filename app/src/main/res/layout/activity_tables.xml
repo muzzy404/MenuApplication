@@ -17,57 +17,56 @@
         android:textColor="@color/colorTitleList"
         android:textSize="@android:dimen/app_icon_size" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TableLayout
-            android:id="@+id/tablesTable"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txtTableNumber"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:text="@string/table_number"
+            android:textColor="@color/colorHeaders" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txtPersons"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:text="@string/table_persons"
+            android:textColor="@color/colorHeaders" />
 
-                <TextView
-                    android:id="@+id/txtTableNumber"
-                    style="@android:style/TextAppearance.DeviceDefault.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="cursive"
-                    android:gravity="center"
-                    android:text="@string/table_number"
-                    android:textColor="@color/colorHeaders" />
+        <TextView
+            android:id="@+id/txtOrders"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:text="@string/tables_orders"
+            android:textColor="@color/colorHeaders" />
 
-                <TextView
-                    android:id="@+id/txtPersons"
-                    style="@android:style/TextAppearance.DeviceDefault.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:fontFamily="cursive"
-                    android:gravity="center"
-                    android:text="@string/table_persons"
-                    android:textColor="@color/colorHeaders" />
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txtOrders"
-                    style="@android:style/TextAppearance.DeviceDefault.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:fontFamily="cursive"
-                    android:gravity="center"
-                    android:text="@string/tables_orders"
-                    android:textColor="@color/colorHeaders" />
+    <ListView
+        android:id="@+id/listViewTables"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
-            </TableRow>
-
-
-
-        </TableLayout>
-    </ScrollView>
+    <Button
+        android:id="@+id/checkTablesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 </LinearLayout>
