@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,24 +19,15 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
     Waiter waiter;
     ArrayList<Table> tables;
     TablesAdapter tablesAdapter;
+    ListView listViewTables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tables);
         findViewById(R.id.checkTablesButton).setOnClickListener(this);
-    }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.checkTablesButton:
-                test();
-                break;
-        }
-    }
-
-    private void test() {
+        //-----------------------
         waiter = new Waiter(1, "Ivan");
 
         // create few tables
@@ -52,7 +44,23 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
 
         tablesAdapter = new TablesAdapter(this, tables);
 
-        ListView listViewTables = (ListView) findViewById(R.id.listViewTables);
+        listViewTables = (ListView) findViewById(R.id.listViewTables);
         listViewTables.setAdapter(tablesAdapter);
+        //-----------------------
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.checkTablesButton:
+                test();
+                break;
+        }
+    }
+
+    private void test() {
+        Table table = new Table(3, waiter, 1);
+        tables.add(table);
+        tablesAdapter.notifyDataSetChanged();
     }
 }
