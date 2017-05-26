@@ -15,7 +15,7 @@ public class MenuDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = MenuDbHelper.class.getSimpleName();
 
     private static final String DATABASE_NAME = "menuapp.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     /**
      * Constructor {@link MenuDbHelper}.
@@ -28,12 +28,11 @@ public class MenuDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        dropAllTables(db);
-
         // create tables table
         String SQL_CREATE_TABLE = "CREATE TABLE " + MenuContract.TableEntry.TABLE_NAME + " ("
                 + MenuContract.TableEntry._ID + " INTEGER PRIMARY KEY, "
-                + MenuContract.TableEntry.COLUMN_WAITER + " TEXT NOT NULL);";
+                + MenuContract.TableEntry.COLUMN_PERSONS + " INTEGER NOT NULL);";
+                //+ MenuContract.TableEntry.COLUMN_WAITER + " TEXT NOT NULL);";
         db.execSQL(SQL_CREATE_TABLE);
 
         // create orders table
@@ -60,9 +59,9 @@ public class MenuDbHelper extends SQLiteOpenHelper {
     }
 
     private void dropAllTables(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF IT EXISTS " + MenuContract.TableEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF IT EXISTS " + MenuContract.OrderEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF IT EXISTS " + MenuContract.ItemEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MenuContract.TableEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MenuContract.OrderEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MenuContract.ItemEntry.TABLE_NAME);
     }
 
     public void insertTestTables(Context context) {
@@ -71,9 +70,11 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         // first test
-        int i = 12;
+        int i = 14;
         values.put(MenuContract.TableEntry._ID, i);
-        values.put(MenuContract.TableEntry.COLUMN_WAITER, "Peter");
+        i = 15;
+        values.put(MenuContract.TableEntry.COLUMN_PERSONS, i);
+        //values.put(MenuContract.TableEntry.COLUMN_WAITER, "Peter");
 
         if (db.insert(MenuContract.TableEntry.TABLE_NAME, null, values) == -1) {
             Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();

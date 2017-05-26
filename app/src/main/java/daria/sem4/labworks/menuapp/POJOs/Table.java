@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public class Table {
 
     private final int id;
-    private final Waiter waiter;
+    //private final Waiter waiter;
     private int personsNum;
     private ArrayList<Order> orders;
 
-    public Table(int id, Waiter waiter, int personsNum) {
+    public Table(int id, /*Waiter waiter,*/ int personsNum) {
         this.id = id;
-        this.waiter = waiter;
+        //this.waiter = waiter;
         this.personsNum = personsNum;
         orders = new ArrayList<>();
     }
