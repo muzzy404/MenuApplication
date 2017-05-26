@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,51 +18,61 @@ import daria.sem4.labworks.menuapp.adapters.TablesAdapter;
 
 public class TablesActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Waiter waiter;
+    Waiter waiter;  // TODO: get from another activity
     ArrayList<Table> tables;
     TablesAdapter tablesAdapter;
     ListView listViewTables;
+
+    EditText editTableNum, editPersonsNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tables);
-        findViewById(R.id.checkTablesButton).setOnClickListener(this);
 
-        //-----------------------
+        findViewById(R.id.btnNewTable).setOnClickListener(this);
+
+        editTableNum = (EditText) findViewById(R.id.editTableNum);
+        editPersonsNum = (EditText) findViewById(R.id.editPersonsNum);
+
         waiter = new Waiter(1, "Ivan");
 
-        // create few tables
-        Table table1 = new Table(1, waiter, 5);
-        Table table2 = new Table(2, waiter, 6);
-        Table table3 = new Table(3, waiter, 1);
-
+        // setting adapter
         tables = new ArrayList<Table>();
-        tables.add(table1);
-        Toast.makeText(getApplicationContext(),
-                "table -> " + table1.getId(), Toast.LENGTH_SHORT).show();
-        tables.add(table2);
-        tables.add(table3);
-
-        tablesAdapter = new TablesAdapter(this, tables);
-
+        tablesAdapter = new TablesAdapter(this, tables, this);
         listViewTables = (ListView) findViewById(R.id.listViewTables);
         listViewTables.setAdapter(tablesAdapter);
-        //-----------------------
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.checkTablesButton:
-                test();
+
+            case R.id.btnNewTable:
+                Log.d("Dasha", "add btn");
+
+                Table table = new Table(
+                        Integer.valueOf(editTableNum.getText().toString()),
+                        waiter,
+                        Integer.valueOf(editPersonsNum.getText().toString()));
+                // TODO: do not add if exists!
+                tables.add(table);
+                // TODO: adding to DB
+                break;
+
+            case R.id.btnDeleteTable:
+                Log.d("Dasha", "delete btn = " + v.getTag());
+                Log.d("Dasha", "table = " + tables.get((Integer) v.getTag()).getId() +
+                " persons = " + tables.get((Integer) v.getTag()).getPersonsNum());
+
+                Log.d("Dasha", "size before = " + tables.size());
+                tables.remove((int) v.getTag());
+                Log.d("Dasha", "size after = " + tables.size());
+
                 break;
         }
-    }
 
-    private void test() {
-        Table table = new Table(3, waiter, 1);
-        tables.add(table);
         tablesAdapter.notifyDataSetChanged();
     }
+
 }

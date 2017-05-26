@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,12 +25,14 @@ public class TablesAdapter extends BaseAdapter {
     ArrayList<Table> tables;
     Context context;
     LayoutInflater layoutInflater;
+    View.OnClickListener deleteListener;
 
-    public TablesAdapter(Context context, ArrayList<Table> tables) {
+    public TablesAdapter(Context context, ArrayList<Table> tables, View.OnClickListener listener) {
         this.context = context;
         layoutInflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.tables = tables;
+        deleteListener = listener;
     }
 
     @Override
@@ -46,7 +51,7 @@ public class TablesAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
             view = layoutInflater.inflate(R.layout.table_item, parent, false);
@@ -61,6 +66,9 @@ public class TablesAdapter extends BaseAdapter {
                 String.valueOf(table.getPersonsNum()));
         ((TextView) view.findViewById(R.id.ordersNumItem)).setText(
                 String.valueOf(table.ordersNum()));
+
+        view.findViewById(R.id.btnDeleteTable).setTag(position);
+        view.findViewById(R.id.btnDeleteTable).setOnClickListener(deleteListener);
 
         return view;
     }
