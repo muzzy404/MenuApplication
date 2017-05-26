@@ -2,14 +2,9 @@ package daria.sem4.labworks.menuapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 import daria.sem4.labworks.menuapp.POJOs.Table;
@@ -49,10 +44,10 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
 
             case R.id.btnNewTable:
-                Log.d("Dasha", "add btn");
+                int tableNumber = Integer.valueOf(editTableNum.getText().toString());
 
                 Table table = new Table(
-                        Integer.valueOf(editTableNum.getText().toString()),
+                        tableNumber,
                         waiter,
                         Integer.valueOf(editPersonsNum.getText().toString()));
                 // TODO: do not add if exists!
@@ -61,14 +56,7 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.btnDeleteTable:
-                Log.d("Dasha", "delete btn = " + v.getTag());
-                Log.d("Dasha", "table = " + tables.get((Integer) v.getTag()).getId() +
-                " persons = " + tables.get((Integer) v.getTag()).getPersonsNum());
-
-                Log.d("Dasha", "size before = " + tables.size());
                 tables.remove((int) v.getTag());
-                Log.d("Dasha", "size after = " + tables.size());
-
                 break;
         }
 
