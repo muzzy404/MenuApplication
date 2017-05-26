@@ -8,16 +8,22 @@ import java.util.HashMap;
 
 public class Order {
 
+    private final int id;
     private HashMap<Item, Integer> orderList;
     private float total;
 
-    public Order() {
+    public Order(int id) {
+        this.id = id;
         orderList = new HashMap<>();
         total = (float) 0.0;
     }
 
     float getTotal() {
         return total;
+    }
+
+    int getId() {
+        return id;
     }
 
     HashMap<Item, Integer> getOrderList() {

@@ -64,4 +64,6 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
         tablesAdapter.notifyDataSetChanged();
     }
 
+    //TODO: method to upload tables from DB
+
 }
