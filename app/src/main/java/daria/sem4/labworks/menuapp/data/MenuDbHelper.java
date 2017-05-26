@@ -1,9 +1,11 @@
 package daria.sem4.labworks.menuapp.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by Daria on 26.05.2017.
@@ -26,6 +28,8 @@ public class MenuDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        dropAllTables(db);
+
         // create tables table
         String SQL_CREATE_TABLE = "CREATE TABLE " + MenuContract.TableEntry.TABLE_NAME + " ("
                 + MenuContract.TableEntry._ID + " INTEGER PRIMARY KEY, "
@@ -59,5 +63,22 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF IT EXISTS " + MenuContract.TableEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF IT EXISTS " + MenuContract.OrderEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF IT EXISTS " + MenuContract.ItemEntry.TABLE_NAME);
+    }
+
+    public void insertTestTables(Context context) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        // first test
+        int i = 12;
+        values.put(MenuContract.TableEntry._ID, i);
+        values.put(MenuContract.TableEntry.COLUMN_WAITER, "Peter");
+
+        if (db.insert(MenuContract.TableEntry.TABLE_NAME, null, values) == -1) {
+            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+        }
     }
 }
