@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -22,6 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/tablesTitleImage"
+            android:layout_width="@android:dimen/app_icon_size"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            app:srcCompat="?android:attr/actionModeCopyDrawable" />
 
         <TextView
             android:id="@+id/txtTableNumber"
@@ -56,6 +64,50 @@
             android:text="@string/tables_orders"
             android:textColor="@color/colorHeaders" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/btnNewTable"
+            android:layout_width="@android:dimen/app_icon_size"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+        <EditText
+            android:id="@+id/editTableNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1"
+            android:gravity="center"
+            android:fontFamily="sans-serif-smallcaps"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/editPersonsNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="1"
+            android:gravity="center"
+            android:fontFamily="sans-serif-smallcaps"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/editOrdersNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="1"
+            android:gravity="center"
+            android:fontFamily="sans-serif-smallcaps"
+            android:inputType="numberDecimal" />
     </LinearLayout>
 
     <ListView
