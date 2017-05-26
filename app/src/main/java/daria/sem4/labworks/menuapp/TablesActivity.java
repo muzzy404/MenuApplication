@@ -56,6 +56,7 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.btnDeleteTable:
+                //TODO: remove from DB
                 tables.remove((int) v.getTag());
                 break;
         }
