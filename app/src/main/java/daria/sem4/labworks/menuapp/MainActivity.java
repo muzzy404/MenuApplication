@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import daria.sem4.labworks.menuapp.data.MenuDbHelper;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private MenuDbHelper menuDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnEditMenu).setOnClickListener(this);
         findViewById(R.id.btnAddWaiter).setOnClickListener(this);
 
+        menuDbHelper = new MenuDbHelper(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
