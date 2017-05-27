@@ -19,8 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center_horizontal"
         android:fontFamily="serif"
+        android:gravity="center"
         android:text="1"
         android:textColor="@color/colorTableItem" />
 
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:fontFamily="serif"
         android:text="2"
         android:textColor="@color/colorTableItem" />
@@ -41,9 +41,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:fontFamily="serif"
         android:text="3"
         android:textColor="@color/colorTableItem" />
+
+    <ImageView
+        android:id="@+id/btnEditTable"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 
 </LinearLayout>

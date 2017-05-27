@@ -110,11 +110,16 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
                         null);
                 tables.remove(deleteIndex);
                 break;
+
+            case R.id.btnEditTable:
+                Table editTable = tables.get((int) v.getTag());
+
+                //TODO: go to new activity + table to activity
+
+                break;
         }
 
         tablesAdapter.notifyDataSetChanged();
     }
-
-    //TODO: method to upload tables from DB
 
 }

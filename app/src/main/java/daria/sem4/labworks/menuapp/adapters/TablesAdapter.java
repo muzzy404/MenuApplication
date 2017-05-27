@@ -6,10 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,14 +22,14 @@ public class TablesAdapter extends BaseAdapter {
     ArrayList<Table> tables;
     Context context;
     LayoutInflater layoutInflater;
-    View.OnClickListener deleteListener;
+    View.OnClickListener onClickListener;
 
     public TablesAdapter(Context context, ArrayList<Table> tables, View.OnClickListener listener) {
         this.context = context;
         layoutInflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.tables = tables;
-        deleteListener = listener;
+        onClickListener = listener;
     }
 
     @Override
@@ -68,7 +65,10 @@ public class TablesAdapter extends BaseAdapter {
                 String.valueOf(table.ordersNum()));
 
         view.findViewById(R.id.btnDeleteTable).setTag(position);
-        view.findViewById(R.id.btnDeleteTable).setOnClickListener(deleteListener);
+        view.findViewById(R.id.btnDeleteTable).setOnClickListener(onClickListener);
+
+        view.findViewById(R.id.btnEditTable).setTag(position);
+        view.findViewById(R.id.btnEditTable).setOnClickListener(onClickListener);
 
         return view;
     }

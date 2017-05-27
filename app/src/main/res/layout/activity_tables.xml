@@ -64,6 +64,10 @@
             android:text="@string/tables_orders"
             android:textColor="@color/colorHeaders" />
 
+        <Space
+            android:layout_width="@android:dimen/app_icon_size"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -109,6 +113,11 @@
             android:inputType="numberDecimal"
             android:text="0"
             android:enabled="false" />
+
+        <Space
+            android:layout_width="@android:dimen/app_icon_size"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <ListView
