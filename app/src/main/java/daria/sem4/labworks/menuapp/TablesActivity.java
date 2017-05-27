@@ -20,7 +20,7 @@ import daria.sem4.labworks.menuapp.data.MenuDbHelper;
 
 public class TablesActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //Waiter waiter;  // TODO: get from another activity
+    //Waiter waiter;
     ArrayList<Table> tables;
     TablesAdapter tablesAdapter;
     ListView listViewTables;
@@ -79,10 +79,10 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        SQLiteDatabase db = menuDbHelper.getWritableDatabase();
         switch (v.getId()) {
 
             case R.id.btnNewTable:
-                SQLiteDatabase db = menuDbHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
 
                 int tableNumber = Integer.valueOf(editTableNum.getText().toString());
@@ -102,8 +102,14 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.btnDeleteTable:
-                //TODO: remove from DB
-                tables.remove((int) v.getTag());
+                int deleteIndex = (int) v.getTag();
+                int deleteId = tables.get(deleteIndex).getId();
+
+                db.delete(
+                        MenuContract.TableEntry.TABLE_NAME,
+                        MenuContract.TableEntry._ID + " = " + deleteId,
+                        null);
+                tables.remove(deleteIndex);
                 break;
         }
 

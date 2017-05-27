@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MenuApp</string>
+    <string name="app_name">Menu application</string>
 
     <string name="menu_title">menu application</string>
     <string name="tables_menu_title">list of my tables</string>
