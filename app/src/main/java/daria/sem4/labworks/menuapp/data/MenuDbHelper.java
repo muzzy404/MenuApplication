@@ -64,6 +64,7 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MenuContract.ItemEntry.TABLE_NAME);
     }
 
+    // only for first test
     public void insertTestTables(Context context) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -74,7 +75,6 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         values.put(MenuContract.TableEntry._ID, i);
         i = 15;
         values.put(MenuContract.TableEntry.COLUMN_PERSONS, i);
-        //values.put(MenuContract.TableEntry.COLUMN_WAITER, "Peter");
 
         if (db.insert(MenuContract.TableEntry.TABLE_NAME, null, values) == -1) {
             Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();

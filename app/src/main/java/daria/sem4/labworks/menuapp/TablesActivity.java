@@ -1,5 +1,6 @@
 package daria.sem4.labworks.menuapp;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 import daria.sem4.labworks.menuapp.POJOs.Table;
@@ -79,15 +82,23 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
 
             case R.id.btnNewTable:
-                int tableNumber = Integer.valueOf(editTableNum.getText().toString());
+                SQLiteDatabase db = menuDbHelper.getWritableDatabase();
+                ContentValues values = new ContentValues();
 
-                Table table = new Table(
-                        tableNumber,
-                        /*waiter,*/
-                        Integer.valueOf(editPersonsNum.getText().toString()));
-                // TODO: do not add if exists!
+                int tableNumber = Integer.valueOf(editTableNum.getText().toString());
+                int persons = Integer.valueOf(editPersonsNum.getText().toString());
+
+                values.put(MenuContract.TableEntry._ID, tableNumber);
+                values.put(MenuContract.TableEntry.COLUMN_PERSONS, persons);
+
+                if (db.insert(MenuContract.TableEntry.TABLE_NAME, null, values) == -1) {
+                    Toast.makeText(getApplicationContext(), "this table is already in your list",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Table table = new Table(tableNumber, /*waiter,*/ persons);
                 tables.add(table);
-                // TODO: adding to DB
                 break;
 
             case R.id.btnDeleteTable:

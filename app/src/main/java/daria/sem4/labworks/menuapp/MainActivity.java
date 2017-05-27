@@ -29,8 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-        // test
-        menuDbHelper.insertTestTables(getApplicationContext());
+
+        // next line only for DB first test
+        // menuDbHelper.insertTestTables(getApplicationContext());
     }
 
     @Override
