@@ -13,7 +13,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import daria.sem4.labworks.menuapp.POJOs.Table;
-import daria.sem4.labworks.menuapp.POJOs.Waiter;
 import daria.sem4.labworks.menuapp.adapters.TablesAdapter;
 import daria.sem4.labworks.menuapp.data.MenuContract;
 import daria.sem4.labworks.menuapp.data.MenuDbHelper;
@@ -69,7 +68,7 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
         /*waiter = new Waiter(1, "Ivan");*/
 
         // setting adapter
-        tables = new ArrayList<Table>();
+        tables = new ArrayList<>();
         uploadFromDB();
 
         tablesAdapter = new TablesAdapter(this, tables, this);
