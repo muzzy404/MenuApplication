@@ -75,12 +75,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
         <ImageView
             android:id="@+id/btnNewTable"
             android:layout_width="@android:dimen/app_icon_size"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:layout_gravity="center_vertical"
             app:srcCompat="@android:drawable/ic_input_add" />
 
         <EditText
@@ -108,11 +108,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:enabled="false"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
             android:inputType="numberDecimal"
-            android:text="0"
-            android:enabled="false" />
+            android:text="0" />
 
         <Space
             android:layout_width="@android:dimen/app_icon_size"
