@@ -74,6 +74,9 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
                 Table table = new Table(tableNumber, /*waiter,*/ persons);
                 tables.add(table);
 
+                editTableNum.setText("");
+                editPersonsNum.setText("");
+
                 break;
             case R.id.btnDeleteTable:
                 int deleteIndex = (int) v.getTag();

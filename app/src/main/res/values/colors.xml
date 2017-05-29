@@ -12,4 +12,6 @@
     <color name="colorHeaders">#f13000</color>
     <color name="colorTableItem">#7b3f30</color>
 
+    <color name="colorEditItem">#0575ff</color>
+
 </resources>

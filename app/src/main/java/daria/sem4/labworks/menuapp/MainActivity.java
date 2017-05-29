@@ -30,21 +30,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.btnStartWithoutAuthorization:
+            case R.id.btnStartWithoutAuthorization: {
                 // TODO: create default waiter
                 Intent intent = new Intent(MainActivity.this, TablesActivity.class);
                 startActivity(intent);
                 break;
+            }
             case R.id.btnAuthorization:
                 // TODO: authorization of waiter
                 Toast.makeText(getApplicationContext(),
                         "Not available", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.btnEditMenu:
-                // TODO: edit DB menu
-                Toast.makeText(getApplicationContext(),
-                        "Not available", Toast.LENGTH_SHORT).show();
+            case R.id.btnEditMenu: {
+                Intent intent = new Intent(MainActivity.this, EditMenuActivity.class);
+                startActivity(intent);
                 break;
+            }
             case R.id.btnAddWaiter:
                 // TODO: add new waiter
                 Toast.makeText(getApplicationContext(),

@@ -12,4 +12,9 @@
 
     <string name="orders_add_order">Add new order</string>
 
+    <string name="txt_edit_item_name">Name</string>
+    <string name="txt_edit_item_type">Category</string>
+    <string name="txt_edit_item_weight">Weight</string>
+    <string name="txt_edit_item_price">Price</string>
+
 </resources>
