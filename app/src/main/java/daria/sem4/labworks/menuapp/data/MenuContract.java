@@ -23,7 +23,7 @@ public final class MenuContract {
 
         public final static String _ID = BaseColumns._ID;
         public final static String COLUMN_TABLE_ID = "table_id";
-        public final static String COLUMN_ITEM = "item";
+        public final static String COLUMN_ITEM = "item_id";
         public final static String COLUMN_NUMBER = "number";
     }
 
@@ -31,11 +31,10 @@ public final class MenuContract {
         public final static String TABLE_NAME = "items";
 
         public final static String _ID = BaseColumns._ID;
-        public final static String COLUMN_ORDER_ID = "order_id";
         public final static String COLUMN_TYPE_ID = "type";
         public final static String COLUMN_NAME = "name";
-        public final static String COLUMN_PRICE = "price";
         public final static String COLUMN_WEIGHT = "weight";
+        public final static String COLUMN_PRICE = "price";
     }
 
 }

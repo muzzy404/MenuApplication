@@ -20,7 +20,7 @@ public class MenuDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = MenuDbHelper.class.getSimpleName();
 
     private static final String DATABASE_NAME = "menuapp.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
 
     private String[] tablesProjection = {
             MenuContract.TableEntry._ID,
@@ -65,18 +65,17 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         SQL_CREATE_TABLE = "CREATE TABLE " + MenuContract.OrderEntry.TABLE_NAME + " ("
                 + MenuContract.OrderEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + MenuContract.OrderEntry.COLUMN_TABLE_ID + " INTEGER NOT NULL, "
-                + MenuContract.OrderEntry.COLUMN_ITEM + " TEXT NOT NULL, "
+                + MenuContract.OrderEntry.COLUMN_ITEM + " INTEGER NOT NULL, "
                 + MenuContract.OrderEntry.COLUMN_NUMBER + " INTEGER NOT NULL DEFAULT 1);";
         db.execSQL(SQL_CREATE_TABLE);
 
         // create items table
         SQL_CREATE_TABLE = "CREATE TABLE " + MenuContract.ItemEntry.TABLE_NAME + " ("
                 + MenuContract.ItemEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + MenuContract.ItemEntry.COLUMN_ORDER_ID + " INTEGER NOT NULL, "
                 + MenuContract.ItemEntry.COLUMN_TYPE_ID + " INTEGER NOT NULL DEFAULT 1, "
                 + MenuContract.ItemEntry.COLUMN_NAME + " TEXT NOT NULL, "
-                + MenuContract.ItemEntry.COLUMN_PRICE + " FLOAT NOT NULL, "
-                + MenuContract.ItemEntry.COLUMN_WEIGHT + " INTEGER NOT NULL);";
+                + MenuContract.ItemEntry.COLUMN_WEIGHT + " INTEGER NOT NULL, "
+                + MenuContract.ItemEntry.COLUMN_PRICE + " FLOAT NOT NULL);";
         db.execSQL(SQL_CREATE_TABLE);
     }
 
