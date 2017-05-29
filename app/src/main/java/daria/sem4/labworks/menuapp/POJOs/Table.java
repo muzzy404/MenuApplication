@@ -11,13 +11,11 @@ public class Table {
     private final int id;
     //private final Waiter waiter;
     private int personsNum;
-    //???private ArrayList<Order> orders;
 
     public Table(int id, /*Waiter waiter,*/ int personsNum) {
         this.id = id;
         //this.waiter = waiter;
         this.personsNum = personsNum;
-        //???orders = new ArrayList<>();
     }
 
     public int getId() {
@@ -35,13 +33,5 @@ public class Table {
     public int getPersonsNum() {
         return personsNum;
     }
-
-    /*public void addOrder(Order order) {
-        orders.add(order);
-    }
-
-    public int ordersNum() {
-        return orders.size();
-    }*/
 
 }

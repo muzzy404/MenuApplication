@@ -27,6 +27,8 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
 
     EditText editTableNum, editPersonsNum;
 
+    public final static String EDIT_TABLE_TAG = "editId";
+
     private MenuDbHelper menuDbHelper;
     private String[] projection = {
             MenuContract.TableEntry._ID,
@@ -83,41 +85,32 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
 
             case R.id.btnNewTable:
-                ContentValues values = new ContentValues();
-
                 int tableNumber = Integer.valueOf(editTableNum.getText().toString());
                 int persons = Integer.valueOf(editPersonsNum.getText().toString());
 
-                values.put(MenuContract.TableEntry._ID, tableNumber);
-                values.put(MenuContract.TableEntry.COLUMN_PERSONS, persons);
-
-                if (db.insert(MenuContract.TableEntry.TABLE_NAME, null, values) == -1) {
+                if (!menuDbHelper.addNewTable(tableNumber, persons)) {
                     Toast.makeText(getApplicationContext(), "this table is already in your list",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 Table table = new Table(tableNumber, /*waiter,*/ persons);
                 tables.add(table);
-                break;
 
+                break;
             case R.id.btnDeleteTable:
                 int deleteIndex = (int) v.getTag();
                 int deleteId = tables.get(deleteIndex).getId();
 
-                db.delete(
-                        MenuContract.TableEntry.TABLE_NAME,
-                        MenuContract.TableEntry._ID + " = " + deleteId,
-                        null);
+                menuDbHelper.deleteTable(deleteId);
                 tables.remove(deleteIndex);
-                break;
 
+                break;
             case R.id.btnEditTable:
-                Table editTable = tables.get((int) v.getTag());
+                int editTableId = tables.get((int) v.getTag()).getId();
 
                 Intent intent = new Intent(TablesActivity.this, OrdersActivity.class);
+                intent.putExtra(EDIT_TABLE_TAG, editTableId);
                 startActivity(intent);
-                //TODO: go to new activity + table to activity
 
                 break;
         }

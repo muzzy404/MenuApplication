@@ -64,22 +64,24 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MenuContract.ItemEntry.TABLE_NAME);
     }
 
-    // only for first test
-    public void insertTestTables(Context context) {
+    public boolean addNewTable(int tableNumber, int persons) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
 
-        // first test
-        int i = 14;
-        values.put(MenuContract.TableEntry._ID, i);
-        i = 15;
-        values.put(MenuContract.TableEntry.COLUMN_PERSONS, i);
+        values.put(MenuContract.TableEntry._ID, tableNumber);
+        values.put(MenuContract.TableEntry.COLUMN_PERSONS, persons);
 
-        if (db.insert(MenuContract.TableEntry.TABLE_NAME, null, values) == -1) {
-            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-        }
+        // if result != -1 => success
+        return  !(db.insert(MenuContract.TableEntry.TABLE_NAME, null, values) == -1);
+    }
+
+    // TODO: delete all info from tables!!!
+    public void deleteTable(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(
+                MenuContract.TableEntry.TABLE_NAME,
+                MenuContract.TableEntry._ID + " = " + id,
+                null);
     }
 }
