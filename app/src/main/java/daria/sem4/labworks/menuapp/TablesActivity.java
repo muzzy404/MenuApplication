@@ -1,6 +1,7 @@
 package daria.sem4.labworks.menuapp;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -114,6 +115,8 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btnEditTable:
                 Table editTable = tables.get((int) v.getTag());
 
+                Intent intent = new Intent(TablesActivity.this, OrdersActivity.class);
+                startActivity(intent);
                 //TODO: go to new activity + table to activity
 
                 break;
