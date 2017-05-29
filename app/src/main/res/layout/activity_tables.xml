@@ -47,21 +47,10 @@
             style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:fontFamily="cursive"
             android:gravity="center"
             android:text="@string/table_persons"
-            android:textColor="@color/colorHeaders" />
-
-        <TextView
-            android:id="@+id/txtOrders"
-            style="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:fontFamily="cursive"
-            android:gravity="center"
-            android:text="@string/tables_orders"
             android:textColor="@color/colorHeaders" />
 
         <Space
@@ -97,22 +86,11 @@
             android:id="@+id/editPersonsNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
             android:inputType="numberDecimal"
             android:text="1" />
-
-        <EditText
-            android:id="@+id/editOrdersNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:enabled="false"
-            android:fontFamily="sans-serif-smallcaps"
-            android:gravity="center"
-            android:inputType="numberDecimal"
-            android:text="0" />
 
         <Space
             android:layout_width="@android:dimen/app_icon_size"

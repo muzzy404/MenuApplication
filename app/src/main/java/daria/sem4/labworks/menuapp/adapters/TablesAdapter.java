@@ -61,8 +61,8 @@ public class TablesAdapter extends BaseAdapter {
                 String.valueOf(table.getId()));
         ((TextView) view.findViewById(R.id.personsNumItem)).setText(
                 String.valueOf(table.getPersonsNum()));
-        ((TextView) view.findViewById(R.id.ordersNumItem)).setText(
-                String.valueOf(table.ordersNum()));
+        /*((TextView) view.findViewById(R.id.ordersNumItem)).setText(
+                String.valueOf(table.ordersNum()));*/
 
         view.findViewById(R.id.btnDeleteTable).setTag(position);
         view.findViewById(R.id.btnDeleteTable).setOnClickListener(onClickListener);
