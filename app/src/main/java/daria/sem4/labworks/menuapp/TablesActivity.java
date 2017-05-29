@@ -36,26 +36,6 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
             //MenuContract.TableEntry.COLUMN_WAITER,
     };
 
-    private void uploadFromDB() {
-        SQLiteDatabase db = menuDbHelper.getReadableDatabase();
-        Cursor cursor = db.query(
-                MenuContract.TableEntry.TABLE_NAME,
-                projection,
-                null, null, null, null, null);
-
-        int idColumnIndex = cursor.getColumnIndex(MenuContract.TableEntry._ID);
-        int personsColumnIndex = cursor.getColumnIndex(MenuContract.TableEntry.COLUMN_PERSONS);
-
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(idColumnIndex);
-            int persons = cursor.getInt(personsColumnIndex);
-            Table table = new Table(id, persons);
-            tables.add(table);
-        }
-
-        cursor.close();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +48,9 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
         editTableNum = (EditText) findViewById(R.id.editTableNum);
         editPersonsNum = (EditText) findViewById(R.id.editPersonsNum);
 
-        /*waiter = new Waiter(1, "Ivan");*/
-
         // setting adapter
         tables = new ArrayList<>();
-        uploadFromDB();
+        menuDbHelper.uploadTables(tables);
 
         tablesAdapter = new TablesAdapter(this, tables, this);
         listViewTables = (ListView) findViewById(R.id.listViewTables);

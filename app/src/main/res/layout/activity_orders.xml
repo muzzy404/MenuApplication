@@ -58,13 +58,13 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btnAddOrder"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_input_add" />
 
         <TextView
-            android:id="@+id/textView3"
             style="@android:style/TextAppearance.DeviceDefault.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

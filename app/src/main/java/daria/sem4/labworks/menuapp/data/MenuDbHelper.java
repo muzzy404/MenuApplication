@@ -2,10 +2,15 @@ package daria.sem4.labworks.menuapp.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import daria.sem4.labworks.menuapp.POJOs.Table;
 
 /**
  * Created by Daria on 26.05.2017.
@@ -15,13 +20,34 @@ public class MenuDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = MenuDbHelper.class.getSimpleName();
 
     private static final String DATABASE_NAME = "menuapp.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 6;
 
-    /**
-     * Constructor {@link MenuDbHelper}.
-     *
-     * @param context
-     */
+    private String[] tablesProjection = {
+            MenuContract.TableEntry._ID,
+            MenuContract.TableEntry.COLUMN_PERSONS,
+            //MenuContract.TableEntry.COLUMN_WAITER,
+    };
+
+    public void uploadTables(ArrayList<Table> tables) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                MenuContract.TableEntry.TABLE_NAME,
+                tablesProjection,
+                null, null, null, null, null);
+
+        int idColumnIndex = cursor.getColumnIndex(MenuContract.TableEntry._ID);
+        int personsColumnIndex = cursor.getColumnIndex(MenuContract.TableEntry.COLUMN_PERSONS);
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(idColumnIndex);
+            int persons = cursor.getInt(personsColumnIndex);
+            tables.add(new Table(id, persons));
+        }
+
+        cursor.close();
+    }
+
     public MenuDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -38,13 +64,16 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         // create orders table
         SQL_CREATE_TABLE = "CREATE TABLE " + MenuContract.OrderEntry.TABLE_NAME + " ("
                 + MenuContract.OrderEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + MenuContract.OrderEntry.COLUMN_TABLE_ID + " INTEGER NOT NULL, "
                 + MenuContract.OrderEntry.COLUMN_ITEM + " TEXT NOT NULL, "
-                + MenuContract.OrderEntry.COLUMN_NUMBER + "INTEGER NOT NULL DEFAULT 1);";
+                + MenuContract.OrderEntry.COLUMN_NUMBER + " INTEGER NOT NULL DEFAULT 1);";
         db.execSQL(SQL_CREATE_TABLE);
 
         // create items table
         SQL_CREATE_TABLE = "CREATE TABLE " + MenuContract.ItemEntry.TABLE_NAME + " ("
                 + MenuContract.ItemEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + MenuContract.ItemEntry.COLUMN_ORDER_ID + " INTEGER NOT NULL, "
+                + MenuContract.ItemEntry.COLUMN_TYPE_ID + " INTEGER NOT NULL DEFAULT 1, "
                 + MenuContract.ItemEntry.COLUMN_NAME + " TEXT NOT NULL, "
                 + MenuContract.ItemEntry.COLUMN_PRICE + " FLOAT NOT NULL, "
                 + MenuContract.ItemEntry.COLUMN_WEIGHT + " INTEGER NOT NULL);";
