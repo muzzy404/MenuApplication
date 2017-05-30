@@ -13,5 +13,8 @@
     <color name="colorTableItem">#7b3f30</color>
 
     <color name="colorEditItem">#0575ff</color>
+    <color name="colorNameItem">#9e0022</color>
+    <color name="colorParamsItem">#b6445d</color>
+
 
 </resources>
