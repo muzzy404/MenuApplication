@@ -6,12 +6,16 @@ package daria.sem4.labworks.menuapp.POJOs;
 
 public class Item {
 
-    final private int id;
+    final private long id;
     final private String name;
     private float price;
     private int weight;
 
-    public Item(int id, String name) {
+    public long getId() {
+        return id;
+    }
+
+    public Item(long id, String name) {
         this.id = id;
         this.name = name;
 
@@ -19,28 +23,28 @@ public class Item {
         weight = 0;
     }
 
-    public Item(int id, String name, float price, int weight) {
+    public Item(long id, String name, float price, int weight) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.weight = weight;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
     void setPrice(float price) {
         this.price = price;
     }
-    float getPrice() {
+    public float getPrice() {
         return price;
     }
 
     void setWeight(int weight) {
         this.weight = weight;
     }
-    int getWeight() {
+    public int getWeight() {
         return weight;
     }
 

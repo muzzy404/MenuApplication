@@ -20,12 +20,10 @@ import daria.sem4.labworks.menuapp.R;
 public class TablesAdapter extends BaseAdapter {
 
     ArrayList<Table> tables;
-    Context context;
     LayoutInflater layoutInflater;
     View.OnClickListener onClickListener;
 
     public TablesAdapter(Context context, ArrayList<Table> tables, View.OnClickListener listener) {
-        this.context = context;
         layoutInflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.tables = tables;

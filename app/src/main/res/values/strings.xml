@@ -16,5 +16,6 @@
     <string name="txt_edit_item_type">Category</string>
     <string name="txt_edit_item_weight">Weight</string>
     <string name="txt_edit_item_price">Price</string>
+    <string name="menu_list_header">Current menu</string>
 
 </resources>

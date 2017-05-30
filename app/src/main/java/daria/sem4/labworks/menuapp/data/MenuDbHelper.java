@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import daria.sem4.labworks.menuapp.POJOs.Item;
 import daria.sem4.labworks.menuapp.POJOs.Table;
 
 /**
@@ -27,7 +28,15 @@ public class MenuDbHelper extends SQLiteOpenHelper {
             MenuContract.TableEntry.COLUMN_PERSONS,
             //MenuContract.TableEntry.COLUMN_WAITER,
     };
+    private String[] itemsProjection = {
+            MenuContract.ItemEntry._ID,
+            MenuContract.ItemEntry.COLUMN_TYPE_ID,
+            MenuContract.ItemEntry.COLUMN_NAME,
+            MenuContract.ItemEntry.COLUMN_WEIGHT,
+            MenuContract.ItemEntry.COLUMN_PRICE,
+    };
 
+    // ----------------- UPLOAD INFO FROM DB -----------------
     public void uploadTables(ArrayList<Table> tables) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -47,6 +56,32 @@ public class MenuDbHelper extends SQLiteOpenHelper {
 
         cursor.close();
     }
+
+    public void uploadItems(ArrayList<Item> items) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                MenuContract.ItemEntry.TABLE_NAME,
+                itemsProjection,
+                null, null, null, null, null);
+
+        int idColumnIndex = cursor.getColumnIndex(MenuContract.ItemEntry._ID);
+        int nameColumnIndex = cursor.getColumnIndex(MenuContract.ItemEntry.COLUMN_NAME);
+        // TODO: category
+        int weightColumnIndex = cursor.getColumnIndex(MenuContract.ItemEntry.COLUMN_WEIGHT);
+        int priceColumnIndex = cursor.getColumnIndex(MenuContract.ItemEntry.COLUMN_PRICE);
+
+        while (cursor.moveToNext()) {
+            long id = cursor.getLong(idColumnIndex);
+            String name = cursor.getString(nameColumnIndex);
+            int weight = cursor.getInt(weightColumnIndex);
+            float price = cursor.getFloat(priceColumnIndex);
+            items.add(new Item(id, name, price, weight));
+        }
+
+        cursor.close();
+    }
+    // ----------------- UPLOAD INFO FROM DB -----------------
 
     public MenuDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -92,7 +127,8 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MenuContract.ItemEntry.TABLE_NAME);
     }
 
-    public boolean addNewTable(int tableNumber, int persons) {
+// -------------- TABLE --------------
+    public long addNewTable(int tableNumber, int persons) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -100,7 +136,7 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         values.put(MenuContract.TableEntry.COLUMN_PERSONS, persons);
 
         // if result != -1 => success
-        return  !(db.insert(MenuContract.TableEntry.TABLE_NAME, null, values) == -1);
+        return  db.insert(MenuContract.TableEntry.TABLE_NAME, null, values);
     }
 
     // TODO: delete all info from tables!!!
@@ -112,4 +148,19 @@ public class MenuDbHelper extends SQLiteOpenHelper {
                 MenuContract.TableEntry._ID + " = " + id,
                 null);
     }
+// -------------- TABLE --------------
+
+// -------------- ITEM --------------
+    public long addNewItemToList(String name, int weight, float price) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(MenuContract.ItemEntry.COLUMN_NAME, name);
+        values.put(MenuContract.ItemEntry.COLUMN_WEIGHT, weight);
+        values.put(MenuContract.ItemEntry.COLUMN_PRICE, price);
+
+        return db.insert(MenuContract.ItemEntry.TABLE_NAME, null, values);
+    }
+// -------------- ITEM --------------
+
 }

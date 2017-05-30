@@ -30,11 +30,6 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
     public final static String EDIT_TABLE_TAG = "editId";
 
     private MenuDbHelper menuDbHelper;
-    private String[] projection = {
-            MenuContract.TableEntry._ID,
-            MenuContract.TableEntry.COLUMN_PERSONS,
-            //MenuContract.TableEntry.COLUMN_WAITER,
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +61,13 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
                 int tableNumber = Integer.valueOf(editTableNum.getText().toString());
                 int persons = Integer.valueOf(editPersonsNum.getText().toString());
 
-                if (!menuDbHelper.addNewTable(tableNumber, persons)) {
+                if (menuDbHelper.addNewTable(tableNumber, persons) == -1) {
                     Toast.makeText(getApplicationContext(), "this table is already in your list",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Table table = new Table(tableNumber, /*waiter,*/ persons);
-                tables.add(table);
+
+                tables.add(new Table(tableNumber, /*waiter,*/ persons));
 
                 editTableNum.setText("");
                 editPersonsNum.setText("");
