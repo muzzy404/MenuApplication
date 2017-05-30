@@ -59,8 +59,7 @@ public class EditMenuActivity extends AppCompatActivity implements View.OnClickL
                     float price = Float.valueOf(editItemPrice.getText().toString());
 
                     long id = menuDbHelper.addNewItemToList(name, weight, price);
-                    Toast.makeText(getApplicationContext(),
-                            "Id of item: " + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                    Log.d("SQLite", "Id of item: " + String.valueOf(id));
 
                     items.add(new Item(id, name, price, weight));
 

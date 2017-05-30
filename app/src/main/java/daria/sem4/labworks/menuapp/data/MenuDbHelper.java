@@ -54,6 +54,7 @@ public class MenuDbHelper extends SQLiteOpenHelper {
             tables.add(new Table(id, persons));
         }
 
+        db.close();
         cursor.close();
     }
 
@@ -79,6 +80,7 @@ public class MenuDbHelper extends SQLiteOpenHelper {
             items.add(new Item(id, name, price, weight));
         }
 
+        db.close();
         cursor.close();
     }
     // ----------------- UPLOAD INFO FROM DB -----------------
@@ -136,7 +138,10 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         values.put(MenuContract.TableEntry.COLUMN_PERSONS, persons);
 
         // if result != -1 => success
-        return  db.insert(MenuContract.TableEntry.TABLE_NAME, null, values);
+        final long id = db.insert(MenuContract.TableEntry.TABLE_NAME, null, values);
+        db.close();
+
+        return id;
     }
 
     // TODO: delete all info from tables!!!
@@ -147,6 +152,7 @@ public class MenuDbHelper extends SQLiteOpenHelper {
                 MenuContract.TableEntry.TABLE_NAME,
                 MenuContract.TableEntry._ID + " = " + id,
                 null);
+        db.close();
     }
 // -------------- TABLE --------------
 
@@ -159,7 +165,10 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         values.put(MenuContract.ItemEntry.COLUMN_WEIGHT, weight);
         values.put(MenuContract.ItemEntry.COLUMN_PRICE, price);
 
-        return db.insert(MenuContract.ItemEntry.TABLE_NAME, null, values);
+        final long id = db.insert(MenuContract.ItemEntry.TABLE_NAME, null, values);
+        db.close();
+
+        return id;
     }
 // -------------- ITEM --------------
 
