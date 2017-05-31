@@ -57,20 +57,24 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        SQLiteDatabase db = menuDbHelper.getWritableDatabase();
         switch (v.getId()) {
 
             case R.id.btnNewTable:
-                int tableNumber = Integer.valueOf(editTableNum.getText().toString());
-                int persons = Integer.valueOf(editPersonsNum.getText().toString());
+                try {
+                    int tableNumber = Integer.valueOf(editTableNum.getText().toString());
+                    int persons = Integer.valueOf(editPersonsNum.getText().toString());
 
-                if (menuDbHelper.addNewTable(tableNumber, persons) == -1) {
-                    Toast.makeText(getApplicationContext(), "this table is already in your list",
-                            Toast.LENGTH_SHORT).show();
-                    return;
+                    if (menuDbHelper.addNewTable(tableNumber, persons) == -1) {
+                        Toast.makeText(getApplicationContext(), "this table is already in your list",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    tables.add(new Table(tableNumber, /*waiter,*/ persons));
+                } catch (Exception e) {
+                    Toast.makeText(getApplication(),
+                            "Please, fill all fields", Toast.LENGTH_SHORT).show();
                 }
-
-                tables.add(new Table(tableNumber, /*waiter,*/ persons));
 
                 editTableNum.setText("");
                 editPersonsNum.setText("");
