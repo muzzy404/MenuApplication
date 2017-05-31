@@ -66,7 +66,7 @@ public class EditMenuActivity extends AppCompatActivity implements View.OnClickL
                 } catch (Exception e) {
                     Log.d("EditMenu", e.getMessage());
                     Toast.makeText(getApplicationContext(),
-                            "Please fill all fields", Toast.LENGTH_SHORT).show();
+                            "Please, fill all fields", Toast.LENGTH_SHORT).show();
                 }
 
                 editItemName.setText("");
