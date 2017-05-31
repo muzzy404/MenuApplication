@@ -18,4 +18,6 @@
     <string name="txt_edit_item_price">Price</string>
     <string name="menu_list_header">Current menu</string>
 
+    <string name="order_list_header">Order list of table</string>
+
 </resources>

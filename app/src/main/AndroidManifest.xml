@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".TablesActivity" />
         <activity android:name=".OrdersActivity" />
-        <activity android:name=".EditMenuActivity"></activity>
+        <activity android:name=".EditMenuActivity" />
+        <activity android:name=".OrderListActivity"></activity>
     </application>
 
 </manifest>
