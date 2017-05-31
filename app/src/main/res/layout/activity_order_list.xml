@@ -79,6 +79,10 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@android:drawable/arrow_up_float" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
             <ImageView
                 android:id="@+id/btnSubPortion"
                 android:layout_width="wrap_content"
