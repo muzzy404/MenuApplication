@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,7 +28,7 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
 
     EditText editTableNum, editPersonsNum;
 
-    public final static String EDIT_TABLE_TAG = "editId";
+    public final static String EDIT_TABLE_TAG = "editTableId";
 
     private MenuDbHelper menuDbHelper;
 
@@ -35,6 +36,8 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tables);
+
+        Log.d("Test", "Activity onCreate method");
 
         findViewById(R.id.btnNewTable).setOnClickListener(this);
 
@@ -92,6 +95,18 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         tablesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        tables.clear();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        menuDbHelper.uploadTables(tables);
     }
 
 }

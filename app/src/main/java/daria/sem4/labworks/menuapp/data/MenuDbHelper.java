@@ -172,4 +172,12 @@ public class MenuDbHelper extends SQLiteOpenHelper {
     }
 // -------------- ITEM --------------
 
+// -------------- ORDER --------------
+    public long addNewItemToOrder() {
+
+        final long id = 1;
+        return id;
+    }
+// -------------- ORDER --------------
+
 }
