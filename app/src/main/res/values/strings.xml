@@ -3,7 +3,7 @@
 
     <string name="menu_title">menu application</string>
     <string name="tables_menu_title">list of my tables</string>
-    <string name="orders_menu_title_1">table</string>
+    <string name="orders_menu_title_1">Table</string>
     <string name="orders_menu_title_2">orders</string>
 
     <string name="table_number">Table #</string>

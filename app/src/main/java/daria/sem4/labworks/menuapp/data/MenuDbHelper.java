@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import daria.sem4.labworks.menuapp.POJOs.Item;
 import daria.sem4.labworks.menuapp.POJOs.Table;

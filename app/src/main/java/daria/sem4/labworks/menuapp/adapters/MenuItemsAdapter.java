@@ -57,7 +57,8 @@ public class MenuItemsAdapter extends BaseAdapter {
         ((TextView) view.findViewById(R.id.txtItemWeightInList)).setText(
                 String.valueOf(item.getWeight()));
         ((TextView) view.findViewById(R.id.txtItemPriceInList)).setText(
-                String.valueOf(item.getPrice()));
+                //String.valueOf(item.getPrice()));
+                String.format("%.2f", item.getPrice()));
 
         return view;
     }
