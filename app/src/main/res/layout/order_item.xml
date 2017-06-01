@@ -7,11 +7,23 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/btnEditOrder"
         android:layout_width="@android:dimen/app_icon_size"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <TextView
+        android:id="@+id/txtOrderId"
+        style="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:fontFamily="serif"
+        android:text="115"
+        android:layout_margin="5dp"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/colorTableItem" />
 
     <TextView
         android:id="@+id/textView"
@@ -33,6 +45,7 @@
         android:gravity="right"
         android:fontFamily="serif"
         android:text="..."
+        android:layout_margin="5dp"
         android:layout_gravity="center_vertical"
         android:textColor="@color/colorTableItem" />
 </LinearLayout>
