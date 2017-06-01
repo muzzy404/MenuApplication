@@ -8,22 +8,16 @@ import java.util.HashMap;
 
 public class Order {
 
-    private final int id;
     private HashMap<Item, Integer> orderList;
-    private float total;
+    private double total;
 
-    public Order(int id) {
-        this.id = id;
+    public Order() {
         orderList = new HashMap<>();
-        total = (float) 0.0;
+        total = 0.0;
     }
 
-    float getTotal() {
+    public double getTotal() {
         return total;
-    }
-
-    int getId() {
-        return id;
     }
 
     HashMap<Item, Integer> getOrderList() {
@@ -36,7 +30,7 @@ public class Order {
     }
 
     private void updateTotal() {
-        total = (float) 0.0;
+        total = 0.0;
         for(Item key : orderList.keySet()) {
             total += orderList.get(key) * key.getPrice();
         }

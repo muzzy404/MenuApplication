@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import daria.sem4.labworks.menuapp.POJOs.Item;
+import daria.sem4.labworks.menuapp.POJOs.Order;
 import daria.sem4.labworks.menuapp.data.MenuDbHelper;
 
 import static daria.sem4.labworks.menuapp.TablesActivity.EDIT_TABLE_TAG;
@@ -24,10 +25,11 @@ public class OrderListActivity extends AppCompatActivity
     private final int ITEM_NUM_DEFAULT = 1;
     private int itemNum;
     private int position = 0;
+    private double total = 0.0;
 
     private final String SPINNER_TITLE = "Menu";
 
-    TextView txtItemsNum;
+    TextView txtItemsNum, txtTotalSum;
     Spinner itemsSpinner;
 
     ArrayAdapter<String> arrayAdapter;
@@ -36,24 +38,35 @@ public class OrderListActivity extends AppCompatActivity
     ArrayList<Item> items;
     String[] itemString;
 
+    private Order order;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
+        menuDbHelper = new MenuDbHelper(this);
+
+        // list of items for spinner
+        items = new ArrayList<>();
+        menuDbHelper.uploadItems(items);
+
+        order = new Order();
+        //menuDbHelper.uploadOrder(order); TODO: upload from DB items of this order + add new field to table!!!
 
         tableId = getIntent().getIntExtra(EDIT_TABLE_TAG, 1);
         ((TextView) findViewById(R.id.txtTableNumberOrder)).setText(String.valueOf(tableId));
 
+        // current number for new item
         itemNum = ITEM_NUM_DEFAULT;
         txtItemsNum = (TextView) findViewById(R.id.txtItemsNum);
         txtItemsNum.setText(String.valueOf(itemNum));
 
+        // total sum of order
+        txtTotalSum = (TextView) findViewById(R.id.txtTotalSum);
+        txtTotalSum.setText(String.valueOf(order.getTotal()));
+
         findViewById(R.id.btnAddPortion).setOnClickListener(this);
         findViewById(R.id.btnSubPortion).setOnClickListener(this);
-
-        items = new ArrayList<>();
-        menuDbHelper = new MenuDbHelper(this);
-        menuDbHelper.uploadItems(items);
 
         // silly loop, refactor this later some smarter way please
         itemString = new String[items.size()]; int i = 0;

@@ -30,6 +30,10 @@ public class OrdersActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btnAddOrder:
                 Intent intent = new Intent(OrdersActivity.this, OrderListActivity.class);
                 intent.putExtra(EDIT_TABLE_TAG, tableId);
+
+                // TODO: get know how many opened orders this table have
+                // TODO: putExtra new id of order
+
                 startActivity(intent);
                 break;
         }
