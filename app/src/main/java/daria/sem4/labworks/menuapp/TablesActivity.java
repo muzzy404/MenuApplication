@@ -59,7 +59,7 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.btnNewTable:
+            case R.id.btnNewTable: // add new table
                 try {
                     int tableNumber = Integer.valueOf(editTableNum.getText().toString());
                     int persons = Integer.valueOf(editPersonsNum.getText().toString());
@@ -70,7 +70,7 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
                         return;
                     }
 
-                    tables.add(new Table(tableNumber, /*waiter,*/ persons));
+                    tables.add(new Table(tableNumber, /*waiter,*/ persons, 0));
                 } catch (Exception e) {
                     Toast.makeText(getApplication(),
                             "Please, fill all fields", Toast.LENGTH_SHORT).show();
@@ -80,16 +80,16 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
                 editPersonsNum.setText("");
 
                 break;
-            case R.id.btnDeleteTable:
+            case R.id.btnDeleteTable: // delete  table
                 int deleteIndex = (int) v.getTag();
-                int deleteId = tables.get(deleteIndex).getId();
+                long deleteId = tables.get(deleteIndex).getId();
 
                 menuDbHelper.deleteTable(deleteId);
                 tables.remove(deleteIndex);
 
                 break;
-            case R.id.btnEditTable:
-                int editTableId = tables.get((int) v.getTag()).getId();
+            case R.id.btnEditTable: // edit table -> go to OrdersActivity
+                long editTableId = tables.get((int) v.getTag()).getId();
 
                 Intent intent = new Intent(TablesActivity.this, OrdersActivity.class);
                 intent.putExtra(EDIT_TABLE_TAG, editTableId);

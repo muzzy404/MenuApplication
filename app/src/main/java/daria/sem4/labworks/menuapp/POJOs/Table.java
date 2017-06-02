@@ -8,30 +8,37 @@ import java.util.ArrayList;
 
 public class Table {
 
-    private final int id;
+    private final long id;
     //private final Waiter waiter;
     private int personsNum;
+    private int openOrders;
 
-    public Table(int id, /*Waiter waiter,*/ int personsNum) {
+    public Table(long id, /*Waiter waiter,*/ int personsNum, int openOrders) {
         this.id = id;
         //this.waiter = waiter;
         this.personsNum = personsNum;
+        this.openOrders = openOrders;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
     public void addPerson() {
         ++personsNum;
     }
-
     public void removePerson() {
         --personsNum;
     }
-
     public int getPersonsNum() {
         return personsNum;
+    }
+
+    public void setOpenOrders(int openOrders) {
+        this.openOrders = openOrders;
+    }
+    public int getOpenOrders() {
+        return openOrders;
     }
 
 }

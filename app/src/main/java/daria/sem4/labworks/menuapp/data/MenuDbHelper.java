@@ -22,12 +22,13 @@ public class MenuDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = MenuDbHelper.class.getSimpleName();
 
     private static final String DATABASE_NAME = "menuapp.db";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     private String[] tablesProjection = {
             MenuContract.TableEntry._ID,
             MenuContract.TableEntry.COLUMN_PERSONS,
             //MenuContract.TableEntry.COLUMN_WAITER,
+            MenuContract.TableEntry.COLUMN_OPEN_ORDERS,
     };
     private String[] itemsProjection = {
             MenuContract.ItemEntry._ID,
@@ -48,11 +49,13 @@ public class MenuDbHelper extends SQLiteOpenHelper {
 
         int idColumnIndex = cursor.getColumnIndex(MenuContract.TableEntry._ID);
         int personsColumnIndex = cursor.getColumnIndex(MenuContract.TableEntry.COLUMN_PERSONS);
+        int ordersColumnIndex = cursor.getColumnIndex(MenuContract.TableEntry.COLUMN_OPEN_ORDERS);
 
         while (cursor.moveToNext()) {
-            int id = cursor.getInt(idColumnIndex);
+            long id = cursor.getInt(idColumnIndex);
             int persons = cursor.getInt(personsColumnIndex);
-            tables.add(new Table(id, persons));
+            int orders = cursor.getInt(ordersColumnIndex);
+            tables.add(new Table(id, persons, orders));
         }
 
         db.close();
@@ -95,14 +98,16 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         // create tables table
         String SQL_CREATE_TABLE = "CREATE TABLE " + MenuContract.TableEntry.TABLE_NAME + " ("
                 + MenuContract.TableEntry._ID + " INTEGER PRIMARY KEY, "
-                + MenuContract.TableEntry.COLUMN_PERSONS + " INTEGER NOT NULL);";
+                + MenuContract.TableEntry.COLUMN_PERSONS + " INTEGER NOT NULL, "
                 //+ MenuContract.TableEntry.COLUMN_WAITER + " TEXT NOT NULL);";
+                + MenuContract.TableEntry.COLUMN_OPEN_ORDERS + " INTEGER NOT NULL DEFAULT 0);";
         db.execSQL(SQL_CREATE_TABLE);
 
         // create orders table
         SQL_CREATE_TABLE = "CREATE TABLE " + MenuContract.OrderEntry.TABLE_NAME + " ("
                 + MenuContract.OrderEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + MenuContract.OrderEntry.COLUMN_TABLE_ID + " INTEGER NOT NULL, "
+                + MenuContract.OrderEntry.COLUMN_ORDER_ID + " INTEGER NOT NULL, "
                 + MenuContract.OrderEntry.COLUMN_ITEM + " INTEGER NOT NULL, "
                 + MenuContract.OrderEntry.COLUMN_NUMBER + " INTEGER NOT NULL DEFAULT 1);";
         db.execSQL(SQL_CREATE_TABLE);
@@ -146,7 +151,7 @@ public class MenuDbHelper extends SQLiteOpenHelper {
     }
 
     // TODO: delete all info from tables!!!
-    public void deleteTable(int id) {
+    public void deleteTable(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete(

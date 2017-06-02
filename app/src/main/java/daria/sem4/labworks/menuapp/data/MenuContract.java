@@ -16,6 +16,7 @@ public final class MenuContract {
         public final static String _ID = BaseColumns._ID;
         public final static String COLUMN_PERSONS = "persons";
         //public final static String COLUMN_WAITER = "waiter";
+        public final static String COLUMN_OPEN_ORDERS = "open_orders";
     }
 
     public static final class OrderEntry implements BaseColumns {
@@ -23,6 +24,7 @@ public final class MenuContract {
 
         public final static String _ID = BaseColumns._ID;
         public final static String COLUMN_TABLE_ID = "table_id";
+        public final static String COLUMN_ORDER_ID = "order_id";
         public final static String COLUMN_ITEM = "item_id";
         public final static String COLUMN_NUMBER = "number";
     }
