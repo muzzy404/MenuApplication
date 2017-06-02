@@ -72,7 +72,7 @@ public class OrderListActivity extends AppCompatActivity
 
         // total sum of order
         txtTotalSum = (TextView) findViewById(R.id.txtTotalSum);
-        txtTotalSum.setText(String.valueOf(order.getTotal()));
+        txtTotalSum.setText(String.format("%.2f", order.getTotal()));
 
         // set OnClickListener
         findViewById(R.id.btnAddPortion).setOnClickListener(this);
@@ -124,7 +124,10 @@ public class OrderListActivity extends AppCompatActivity
 
             case R.id.btnAddNewItemToOrder: // add new item
 
+                // TODO: add to database
+
                 order.addItemById(items.get(position).getId(), itemNum);
+                txtTotalSum.setText(String.format("%.2f", order.getTotal()));
 
                 itemNum = ITEM_NUM_DEFAULT;
                 break;
@@ -134,10 +137,6 @@ public class OrderListActivity extends AppCompatActivity
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getApplicationContext(),
-                "item " + position + "-> " + items.get(position).getName(),
-                Toast.LENGTH_SHORT).show();
-
         this.position = position;
     }
 
