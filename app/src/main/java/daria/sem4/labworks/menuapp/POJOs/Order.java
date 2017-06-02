@@ -32,7 +32,7 @@ public class Order {
         this.items = items;
 
         positionById = new HashMap<>();
-        
+
         itemsIdNum = new ArrayList<>();
         for(int i = 0; i < items.size(); ++i) {
             positionById.put(items.get(i).getId(), i);
@@ -57,6 +57,14 @@ public class Order {
     public Item getItemByPosition(int position) {
         long itemId = itemsIdNum.get(position).id;
         return items.get(positionById.get(itemId));
+    }
+
+    public int getNumByPosition(int position) {
+        return itemsIdNum.get(position).num;
+    }
+
+    public long getIdByPosition(int position) {
+        return itemsIdNum.get(position).id;
     }
 
     private void updateTotal() {

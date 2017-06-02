@@ -6,14 +6,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import daria.sem4.labworks.menuapp.POJOs.Item;
 import daria.sem4.labworks.menuapp.POJOs.Order;
+import daria.sem4.labworks.menuapp.adapters.OrderItemsAdapter;
 import daria.sem4.labworks.menuapp.data.MenuDbHelper;
 
 import static daria.sem4.labworks.menuapp.TablesActivity.EDIT_TABLE_TAG;
@@ -30,11 +33,14 @@ public class OrderListActivity extends AppCompatActivity
 
     private final String SPINNER_TITLE = "Menu";
 
+    ListView listViewItems;
     TextView txtItemsNum, txtTotalSum;
     Spinner itemsSpinner;
 
     ArrayAdapter<String> arrayAdapter;
     MenuDbHelper menuDbHelper;
+
+    OrderItemsAdapter orderItemsAdapter;
 
     ArrayList<Item> items;
     String[] itemString;
@@ -53,7 +59,7 @@ public class OrderListActivity extends AppCompatActivity
         items = new ArrayList<>();
         menuDbHelper.uploadItems(items);
 
-        order = new Order(1);
+        order = new Order(1, items);
         //menuDbHelper.uploadOrder(order); TODO: upload from DB items of this order + add new field to table!!!
 
         tableId = getIntent().getIntExtra(EDIT_TABLE_TAG, 1);
@@ -68,13 +74,15 @@ public class OrderListActivity extends AppCompatActivity
         txtTotalSum = (TextView) findViewById(R.id.txtTotalSum);
         txtTotalSum.setText(String.valueOf(order.getTotal()));
 
+        // set OnClickListener
         findViewById(R.id.btnAddPortion).setOnClickListener(this);
         findViewById(R.id.btnSubPortion).setOnClickListener(this);
+        findViewById(R.id.btnAddNewItemToOrder).setOnClickListener(this);
 
         // silly loop, refactor this later some smarter way please
         itemString = new String[items.size()]; int i = 0;
         for(Item item : items) {
-            itemString[i] = String.format("%s (portion %d) - %.2f",
+            itemString[i] = String.format(Locale.US, "%s (portion %d) - %.2f",
                     item.getName(), item.getWeight(), item.getPrice());
             ++i;
         }
@@ -88,27 +96,40 @@ public class OrderListActivity extends AppCompatActivity
         itemsSpinner.setSelection(position);
 
         itemsSpinner.setOnItemSelectedListener(this);
+
+        // adapter
+        orderItemsAdapter = new OrderItemsAdapter(this, order);
+        listViewItems = (ListView) findViewById(R.id.listViewOrderItems);
+        listViewItems.setAdapter(orderItemsAdapter);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.btnAddPortion:
+            case R.id.btnAddPortion: // ++portions
                 ++itemNum;
-                txtItemsNum.setText(String.valueOf(itemNum));
+                //txtItemsNum.setText(String.valueOf(itemNum));
                 break;
 
-            case R.id.btnSubPortion:
+            case R.id.btnSubPortion: // --portions
                 if (itemNum == ITEM_NUM_DEFAULT) {
                     Toast.makeText(getApplicationContext(), "You can't add less than 1 portion",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
                 --itemNum;
-                txtItemsNum.setText(String.valueOf(itemNum));
+                //txtItemsNum.setText(String.valueOf(itemNum));
+                break;
+
+            case R.id.btnAddNewItemToOrder: // add new item
+
+                order.addItemById(items.get(position).getId(), itemNum);
+
+                itemNum = ITEM_NUM_DEFAULT;
                 break;
         }
+        txtItemsNum.setText(String.valueOf(itemNum));
     }
 
     @Override

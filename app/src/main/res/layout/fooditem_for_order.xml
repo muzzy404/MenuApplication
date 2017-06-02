@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/btnDeleteItemFromList"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+    <TextView
+        android:id="@+id/txtItemNameOrder"
+        style="@android:style/TextAppearance.DeviceDefault.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:fontFamily="serif"
+        android:text="Type long long logn and some more more more"
+        android:textColor="@color/colorNameItem" />
+
+    <TextView
+        android:id="@+id/txtItemNumOrder"
+        style="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="serif"
+        android:text="3"
+        android:layout_margin="5dp"
+        android:gravity="right"
+        android:textColor="@color/colorNameItem" />
+
+    <TextView
+        android:id="@+id/txtItemPriceOrder"
+        style="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="serif"
+        android:text="255.99"
+        android:layout_margin="5dp"
+        android:gravity="right"
+        android:textColor="@color/colorNameItem" />
+
+</LinearLayout>
