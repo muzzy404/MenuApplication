@@ -18,8 +18,8 @@ import daria.sem4.labworks.menuapp.R;
 
 public class MenuItemsAdapter extends BaseAdapter {
 
-    ArrayList<Item> items;
-    LayoutInflater layoutInflater;
+    private ArrayList<Item> items;
+    private LayoutInflater layoutInflater;
     // TODO: OnClickListener for deletion of items
 
     public MenuItemsAdapter(Context context, ArrayList<Item> items) {

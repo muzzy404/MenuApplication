@@ -29,6 +29,7 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
     EditText editTableNum, editPersonsNum;
 
     public final static String EDIT_TABLE_TAG = "editTableId";
+    public final static String EDIT_ORDER_TAG = "editOrderId";
 
     private MenuDbHelper menuDbHelper;
 
@@ -89,10 +90,17 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
 
                 break;
             case R.id.btnEditTable: // edit table -> go to OrdersActivity
-                long editTableId = tables.get((int) v.getTag()).getId();
+                int position = (int) v.getTag();
+                long editTableId = tables.get(position).getId();
+                long oderId = tables.get(position).getOpenOrders();
+
+                // TODO: add with helper new order
 
                 Intent intent = new Intent(TablesActivity.this, OrdersActivity.class);
+
                 intent.putExtra(EDIT_TABLE_TAG, editTableId);
+                intent.putExtra(EDIT_ORDER_TAG, oderId);
+
                 startActivity(intent);
 
                 break;

@@ -1,7 +1,5 @@
 package daria.sem4.labworks.menuapp.POJOs;
 
-import java.util.ArrayList;
-
 /**
  * Created by Daria on 24.05.2017.
  */

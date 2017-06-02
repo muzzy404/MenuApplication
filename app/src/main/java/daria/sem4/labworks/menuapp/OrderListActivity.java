@@ -2,6 +2,7 @@ package daria.sem4.labworks.menuapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -46,11 +47,13 @@ public class OrderListActivity extends AppCompatActivity
         setContentView(R.layout.activity_order_list);
         menuDbHelper = new MenuDbHelper(this);
 
+        // TODO: ++number of opened orders
+
         // list of items for spinner
         items = new ArrayList<>();
         menuDbHelper.uploadItems(items);
 
-        order = new Order();
+        order = new Order(1);
         //menuDbHelper.uploadOrder(order); TODO: upload from DB items of this order + add new field to table!!!
 
         tableId = getIntent().getIntExtra(EDIT_TABLE_TAG, 1);
@@ -120,5 +123,12 @@ public class OrderListActivity extends AppCompatActivity
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("Test", "onDestroy for list");
+        // TODO: if size of Order == 0 then --number of orders
     }
 }
