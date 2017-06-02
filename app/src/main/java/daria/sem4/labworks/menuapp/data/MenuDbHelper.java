@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import daria.sem4.labworks.menuapp.POJOs.Item;
 import daria.sem4.labworks.menuapp.POJOs.Table;
+import daria.sem4.labworks.menuapp.adapters.OrdersListAdapter;
 
 /**
  * Created by Daria on 26.05.2017.
@@ -185,5 +186,43 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         return id;
     }
 // -------------- ORDER --------------
+
+    public int getOpenOrders(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT " + MenuContract.TableEntry.COLUMN_OPEN_ORDERS + " FROM "
+                + MenuContract.TableEntry.TABLE_NAME + " WHERE "
+                + MenuContract.TableEntry._ID + " = ?";
+        Cursor cursor = db.rawQuery(selectQuery, new String[] {String.valueOf(id)});
+
+        if (cursor == null)
+        {
+            Log.d("my SQLite", "finding of open orders error");
+            return -1;
+        }
+
+        cursor.moveToFirst();
+        int openOrders = cursor.getInt(cursor.getColumnIndex(MenuContract.TableEntry.COLUMN_OPEN_ORDERS));
+        db.close();
+
+        Log.d("my SQLite", "open orders = " + String.valueOf(openOrders));
+        return openOrders;
+    }
+
+    public long setOpenOrders(long tableItem, int num) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(MenuContract.TableEntry.COLUMN_OPEN_ORDERS, num);
+
+        final long id = db.update(MenuContract.TableEntry.TABLE_NAME, values,
+                MenuContract.TableEntry._ID + " = ?",
+                new String[] {String.valueOf(tableItem)});
+
+        db.close();
+
+        Log.d("my SQLite", "updated table id = " + String.valueOf(id));
+        return id;
+    }
 
 }

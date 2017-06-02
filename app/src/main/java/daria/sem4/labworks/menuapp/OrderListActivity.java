@@ -19,12 +19,13 @@ import daria.sem4.labworks.menuapp.POJOs.Order;
 import daria.sem4.labworks.menuapp.adapters.OrderItemsAdapter;
 import daria.sem4.labworks.menuapp.data.MenuDbHelper;
 
+import static daria.sem4.labworks.menuapp.OrdersActivity.ORDER_ID_TAG;
 import static daria.sem4.labworks.menuapp.TablesActivity.EDIT_TABLE_TAG;
 
 public class OrderListActivity extends AppCompatActivity
                                implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    private int tableId;
+    private long tableId, orderId;
 
     private final int ITEM_NUM_DEFAULT = 1;
     private int itemNum;
@@ -53,16 +54,17 @@ public class OrderListActivity extends AppCompatActivity
         setContentView(R.layout.activity_order_list);
         menuDbHelper = new MenuDbHelper(this);
 
-        // TODO: ++number of opened orders
-
         // list of items for spinner
         items = new ArrayList<>();
         menuDbHelper.uploadItems(items);
 
-        order = new Order(1, items);
-        //menuDbHelper.uploadOrder(order); TODO: upload from DB items of this order + add new field to table!!!
+        // get extras
+        tableId = getIntent().getLongExtra(EDIT_TABLE_TAG, 1);
+        orderId = getIntent().getLongExtra(ORDER_ID_TAG, 1);
 
-        tableId = getIntent().getIntExtra(EDIT_TABLE_TAG, 1);
+        order = new Order(orderId, items);
+        // TODO: upload from DB items of this order by id
+
         ((TextView) findViewById(R.id.txtTableNumberOrder)).setText(String.valueOf(tableId));
 
         // current number for new item
@@ -149,6 +151,11 @@ public class OrderListActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         Log.d("Test", "onDestroy for list");
+
         // TODO: if size of Order == 0 then --number of orders
+        if (order.size() == 0) {
+            menuDbHelper.setOpenOrders(tableId, menuDbHelper.getOpenOrders(tableId) - 1);
+        }
+
     }
 }
