@@ -6,14 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import daria.sem4.labworks.menuapp.POJOs.Item;
 import daria.sem4.labworks.menuapp.POJOs.Table;
-import daria.sem4.labworks.menuapp.adapters.OrdersListAdapter;
 
 /**
  * Created by Daria on 26.05.2017.
