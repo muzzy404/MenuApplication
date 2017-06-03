@@ -24,6 +24,7 @@ public class OrdersActivity extends AppCompatActivity implements View.OnClickLis
     private ListView listViewOrders;
 
     public final static String ORDER_ID_TAG = "newOrderId";
+    public final static String TABLE_ID_TAG = "tableId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class OrdersActivity extends AppCompatActivity implements View.OnClickLis
                 int openOrders = menuDbHelper.getOpenOrders(tableId); // TODO: get know how many opened orders this table have
                 menuDbHelper.setOpenOrders(tableId, openOrders + 1);
 
-                intent.putExtra(EDIT_TABLE_TAG, tableId);
+                intent.putExtra(TABLE_ID_TAG, tableId);
                 intent.putExtra(ORDER_ID_TAG, openOrders); // TODO: putExtra new id of order
 
                 startActivity(intent);

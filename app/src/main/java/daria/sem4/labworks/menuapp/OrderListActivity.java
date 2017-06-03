@@ -20,6 +20,7 @@ import daria.sem4.labworks.menuapp.adapters.OrderItemsAdapter;
 import daria.sem4.labworks.menuapp.data.MenuDbHelper;
 
 import static daria.sem4.labworks.menuapp.OrdersActivity.ORDER_ID_TAG;
+import static daria.sem4.labworks.menuapp.OrdersActivity.TABLE_ID_TAG;
 import static daria.sem4.labworks.menuapp.TablesActivity.EDIT_TABLE_TAG;
 
 public class OrderListActivity extends AppCompatActivity
@@ -59,8 +60,10 @@ public class OrderListActivity extends AppCompatActivity
         menuDbHelper.uploadItems(items);
 
         // get extras
-        tableId = getIntent().getLongExtra(EDIT_TABLE_TAG, 1);
-        orderId = getIntent().getLongExtra(ORDER_ID_TAG, 1);
+        tableId = getIntent().getIntExtra(TABLE_ID_TAG, 1);
+        orderId = getIntent().getIntExtra(ORDER_ID_TAG, 1);
+
+        Log.d("test", String.valueOf(tableId));
 
         order = new Order(orderId, items);
         // TODO: upload from DB items of this order by id

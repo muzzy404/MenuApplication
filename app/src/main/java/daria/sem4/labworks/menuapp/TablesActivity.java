@@ -90,7 +90,7 @@ public class TablesActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btnEditTable: // edit table -> go to OrdersActivity
                 int position = (int) v.getTag();
-                long editTableId = tables.get(position).getId();
+                int editTableId = (int) tables.get(position).getId();
 
                 Intent intent = new Intent(TablesActivity.this, OrdersActivity.class);
                 intent.putExtra(EDIT_TABLE_TAG, editTableId);
